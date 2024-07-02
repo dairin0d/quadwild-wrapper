@@ -1,0 +1,19 @@
+schema_version = "1.0.0"
+id = "QuadWild wrapper"
+version = "1.0.0"
+name = "QuadWild wrapper"
+tagline = "Remeshing based on the QuadWild library"
+maintainer = "TeamC, dairin0d"
+type = "add-on"
+
+
+# Optional link to documentation, support, source files, etc
+# website = "http://extensions.blender.org/add-ons/my-example-package/"
+
+
+tags = ["Modeling", "3D View", "Mesh"]
+blender_version_min = "3.6.0"
+
+license = [
+  "SPDX:GPL-2.0-or-later",
+]
