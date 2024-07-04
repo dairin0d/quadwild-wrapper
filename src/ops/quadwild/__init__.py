@@ -247,12 +247,29 @@ def get_os_type():
         return 'UNSUPPORTED'
 
 
+def unix_unquarantine(path):
+    # Blender 4.2 appears to install extensions into a folder where
+    # the unpacked programs don't have execution permission by default
+    
+    import stat
+    
+    if os.path.isdir(path):
+        paths = [os.path.join(path, 'quadwild'), os.path.join(path, 'quad_from_patches')]
+    else:
+        paths = [path]
+    
+    for path in paths:
+        os.chmod(path, stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
+
+
 def macos_unquarantine(path):
     if os.path.isdir(path):
         path = os.path.join(path, '*')
     
     # This is a command recommended by the author of quadwild bi-mdf:
     subprocess.run(['xattr', '-d', 'com.apple.quarantine', path])
+    
+    unix_unquarantine(path)
 
 
 class QuadWild:
@@ -273,7 +290,7 @@ class QuadWild:
         'LINUX': {
             'url': 'https://github.com/cgg-bern/quadwild-bimdf/releases/download/v0.0.2/linux-binaries.zip',
             'zip': 'linux-binaries.zip',
-            'unquarantine': None,
+            'unquarantine': unix_unquarantine,
             'prep': 'quadwild',
             'main': 'quad_from_patches',
         },
