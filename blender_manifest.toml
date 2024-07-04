@@ -1,5 +1,5 @@
 schema_version = "1.0.0"
-id = "QuadWild wrapper"
+id = "quadwild_wrapper"
 version = "1.0.0"
 name = "QuadWild wrapper"
 tagline = "Remeshing based on the QuadWild library"
